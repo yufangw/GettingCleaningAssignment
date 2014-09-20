@@ -7,7 +7,7 @@ output: html_document
 
 ## How the script work
 
-* Extracts only the measurements on the mean and standard deviation for each measurement. 
+### Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 ```{r}
 # read feature names as strings
@@ -22,7 +22,7 @@ colNames = c('subject','activity',featureNames$V2[isMeanStd])
 ```
 There are 561 feature vaiables, 79 of them contain mean() or std()
 
-* Appropriately labels the data set with descriptive variable names. 
+### Appropriately labels the data set with descriptive variable names. 
 ```{r}
 # read training data and extract mean()'s and std()'s
 s = read.table('./train/subject_train.txt')
@@ -54,7 +54,7 @@ There are 2947 observations in the test data set, coming from subjects
  2  4  9 10 12 13 18 20 24
 
 
-* Merges the training and the test sets to create one data set.
+### Merges the training and the test sets to create one data set.
 ```{r}
 # combine training and test data
 Dt = rbind(Dtr, Dts)
@@ -74,7 +74,7 @@ Dt$activity = revalue(Dt$activity, aLabel)
 Replacing activity id 1,2,3,4,5,6 with names WALKING, WALKING_UPSTAIRS, 
 WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
-* creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+### creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ```{r}
 # creates a second, independent tidy data set 
@@ -92,24 +92,29 @@ newD2 = cbind(s1, a1, newD)
 colnames(newD2) = colNames
 newD2[sample.int(nrow(newD2), 6),1:6]
 ```
-New tidy dataset has 180 observations (30 subjects x 6 activities), and 79 feature vaiables
+New tidy dataset has 180 observations (30 subjects x 6 activities), and 79 averaged feature vaiables
 
-* write results
+### write results
 ```{r}
 # write results
 write.table(newD2, 'UCIHARnew.txt', row.name = F, quote = F)
 ```
 
 ## code book
-* subjects: volunteer id, from 1 to 30
-* activities: 6 types: 
-WALKING, 
-WALKING_UPSTAIRS, 
-WALKING_DOWNSTAIRS, 
-SITTING, 
-STANDING, 
-LAYING
-* features and variables
+### subjects: 
+
+volunteer id, from 1 to 30
+
+### activities: 6 types:
+
+* WALKING, 
+* WALKING_UPSTAIRS, 
+* WALKING_DOWNSTAIRS, 
+* SITTING, 
+* STANDING, 
+* LAYING
+
+### features and variables
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
@@ -120,26 +125,25 @@ Finally a Fast Fourier Transform (FFT) was applied to some of these signals prod
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-tBodyAcc-XYZ
-tGravityAcc-XYZ
-tBodyAccJerk-XYZ
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
-fBodyAccJerkMag
-fBodyGyroMag
-fBodyGyroJerkMag
+* tBodyAcc-XYZ
+* tGravityAcc-XYZ
+* tBodyAccJerk-XYZ
+* tBodyGyro-XYZ
+* tBodyGyroJerk-XYZ
+* tBodyAccMag
+* tGravityAccMag
+* tBodyAccJerkMag
+* tBodyGyroMag
+* tBodyGyroJerkMag
+* fBodyAcc-XYZ
+* fBodyAccJerk-XYZ
+* fBodyGyro-XYZ
+* fBodyAccMag
+* fBodyAccJerkMag
+* fBodyGyroMag
+* fBodyGyroJerkMag
 
 The set of variables that were estimated from these signals are: 
 
-mean(): Mean value
-
-std(): Standard deviation
+* mean(): Mean value
+* std(): Standard deviation
