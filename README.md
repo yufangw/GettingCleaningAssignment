@@ -60,7 +60,7 @@ There are 2947 observations in the test data set, coming from subjects
 Dt = rbind(Dtr, Dts)
 ```
 
-* Uses descriptive activity names to name the activities in the data set
+### Uses descriptive activity names to name the activities in the data set
 ```{r}
 # read activity names as strings
 aNames = read.table('./activity_labels.txt', as.is = TRUE)
